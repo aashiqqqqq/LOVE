@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    fetch('/abc/components/navbar.html')
+    fetch('../components/navbar.html')
         .then(response => response.text())
         .then(data => {
             const parser = new DOMParser();
