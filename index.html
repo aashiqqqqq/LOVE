@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love</title>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+
+        * {
+            box-sizing: border-box;
+            cursor: none;
+        }
+        html,
+        body {
+            background: #efefef;
+            color: #212121;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent scrolling */
+        }
+        ::selection {
+            background: #efefef;
+            color: #212121;
+            mix-blend-mode: difference;
+        }
+        ::-moz-selection {
+            background: #efefef;
+            color: #212121;
+        }
+        h1, h2, h3, h4, h5 {
+            font-weight: 900;
+        }
+        h1 {
+            font-size: 3em;
+        }
+        .hero-title {
+            font-size: 8vw;
+            line-height: 1em;
+            font-weight: 900;
+        }
+        .white, a.white {
+            color: #efefef;
+        }
+        .black {
+            color: #212121;
+        }
+        .pearl, a.pearl {
+            color: #fff;
+        }
+        .green, a.green {
+            color: #00BCD4;
+        }
+        .pink {
+            color: #b73b3b;
+        }
+        .blend {
+            mix-blend-mode: difference !important;
+            color: #efefef;
+            position: relative;
+            z-index: 2;
+        }
+        .bg-black {
+            background-color: #212121;
+        }
+        .bg-green {
+            background-color: #00BCD4;
+        }
+        .custom-cursor {
+            position: fixed;
+            opacity: 0;
+            pointer-events: none;
+            mix-blend-mode: difference;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #00BCD4;
+            transition: transform 350ms ease;
+            transform: translate(-50%, -50%) scale(.3);
+            z-index: 1000;
+        }
+        .hero {
+            background-color: #212121;
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            overflow: hidden;
+        }
+        .gradient-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: -moz-linear-gradient(top,  rgba(33,33,33,0) 0%, rgba(33,33,33,1) 100%);
+            background: -webkit-linear-gradient(top,  rgba(33,33,33,0) 0%,rgba(33,33,33,1) 100%);
+            background: linear-gradient(to bottom,  rgba(33,33,33,0) 0%,rgba(33,33,33,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00212121', endColorstr='#212121',GradientType=0 );
+            z-index: 1;
+            pointer-events: none;
+        }
+        .video-wrap {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        #video-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            min-width: 100%;
+            background-position: center center;
+            background-size: cover;
+            object-fit: cover;
+            transform: rotate(180deg);
+        }
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 3;
+            mix-blend-mode: difference;
+        }
+        
+        /* Add this new style for the navbar container */
+        #navbar-container {
+            pointer-events: none; /* Allow clicks to pass through to elements behind */
+        }
+        #navbar-container .nav {
+            pointer-events: auto; /* Re-enable clicks for the navbar itself */
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="styles/navbar.css">
+</head>
+<body>
+    <!-- <div id="navbar-placeholder"></div> -->
+
+    <div class="hero">
+        <div class="video-wrap">
+            <video autoplay playsinline loop muted id="video-bg">
+                <source src="https://tactusmarketing.com/wp-content/uploads/tactus-waves-hero.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div class="gradient-overlay"></div>
+        <div class="content">
+            <h1 class="hero-title blend">
+                I love You
+                <br>
+                FOREVER
+            </h1>
+        </div>
+    </div>
+    <div class="custom-cursor"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var cursor = document.querySelector(".custom-cursor");
+            var initCursor = false;
+
+            window.onmousemove = function(e) {
+                var mouseX = e.clientX;
+                var mouseY = e.clientY;
+                if (!initCursor) {
+                    gsap.to(cursor, 0.5, { opacity: 1 });
+                    initCursor = true;
+                }
+                gsap.to(cursor, 0, { top: mouseY + "px", left: mouseX + "px" });
+            };
+
+            window.onmouseout = function(e) {
+                gsap.to(cursor, 0.3, { opacity: 0 });
+                initCursor = false;
+            };
+        });
+    </script>
+    <script src="scripts/navbar.js"></script>
+</body>
+</html>

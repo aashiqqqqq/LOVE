@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css?family=Acme&display=swap');
+
+@keyframes changeOrder {
+  from { z-index: 9;}
+  to { z-index: 1; }
+}
+
+@keyframes handShake {
+  0%,100% { transform: rotate(10deg); }
+  50% { transform: rotate(-10deg); }
+}
+
+@keyframes handShake2 {
+  0%,100% { transform: rotateY(180deg) rotate(10deg); }
+  50% { transform: rotateY(180deg) rotate(-10deg); }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  line-height: 1;
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+}
+
+form {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+h1 {
+  text-align: center;
+  font-size: 3rem;
+  color: #333;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+}
+
+#hands {
+  text-align: center;
+}
+
+input:checked ~ div .hand {
+  animation: none !important;
+}
+
+.hand {
+  margin: 20px;
+  width: 200px;
+  height: 200px;
+  position: relative;
+  transform: rotate(10deg);
+  display: inline-block;
+  animation: handShake 2s infinite;
+}
+
+.hand > div {
+  position: absolute;
+  box-sizing: border-box;
+  border: 2px solid #333;
+  background: #ffd700;
+  transition: all 0.1s;
+}
+
+.fist {
+  height: 110px;
+  left: 40px;
+  top: 50px;
+  width: 90px;
+  border-radius: 20px 0 0 20px;
+}
+
+.finger {
+  width: 70px;
+  height: 30px;
+  border-radius: 20px;
+  left: 80px;
+  transform-origin: 0 50%;
+}
+
+.finger-1 { top: 50px; --dif: 0px; }
+.finger-2 { top: 78px; left: 84px; --dif: 4px; }
+.finger-3 { top: 106px; --dif: 0px; }
+.finger-4 { top: 134px; height: 26px; left: 76px; --dif: -8px; }
+
+div.thumb {
+  width: 35px;
+  height: 70px;
+  border-radius: 0 20px 20px 20px;
+  top: 50px;
+  left: 80px;
+  border-left: 0 solid;
+  box-shadow: -17px 6px 0 -15px #333;
+}
+
+div.arm {
+  width: 22px;
+  height: 70px;
+  left: 20px;
+  top: 70px;
+  border: 0;
+  border-top: 2px solid #333;
+  border-bottom: 2px solid #333;
+}
+
+#user-hand {
+  transform: rotateY(180deg);
+  animation: handShake2 2s infinite;
+  position: relative;
+}
+
+input[type="radio"] {
+  position: absolute;
+  top: -1000in;
+  left: -1000in;
+}
+
+input[id$="scissors"]:checked ~ div #user-hand .finger-1,
+input[id^="scissors"]:checked ~ div #computer-hand .finger-1 {
+  width: 130px;
+  transform:rotate(-5deg);
+}
+
+input[id$="scissors"]:checked ~ div #user-hand .finger-2,
+input[id^="scissors"]:checked ~ div #computer-hand .finger-2 {
+  width: 130px;
+  transform:rotate(5deg);
+}
+
+input[id$="paper"]:checked ~ div #user-hand .finger-1,
+input[id$="paper"]:checked ~ div #user-hand .finger-2,
+input[id$="paper"]:checked ~ div #user-hand .finger-3,
+input[id$="paper"]:checked ~ div #user-hand .finger-4,
+input[id^="paper"]:checked ~ div #computer-hand .finger-1,
+input[id^="paper"]:checked ~ div #computer-hand .finger-2,
+input[id^="paper"]:checked ~ div #computer-hand .finger-3,
+input[id^="paper"]:checked ~ div #computer-hand .finger-4 {
+  left: 124px;
+  left: calc(124px + var(--dif));
+  width: 80px;
+  border-left: 0;
+  border-radius: 0 20px 20px 0;
+}
+
+#rock-rock:checked ~ div h2::before,
+#paper-paper:checked ~ div h2::before,
+#scissors-scissors:checked ~ div h2::before {
+  content: "You Tied!";
+  color: #ff9900;
+}
+#rock-paper:checked ~ div h2::before,
+#paper-scissors:checked ~ div h2::before,
+#scissors-rock:checked ~ div h2::before {
+  content: "You Win!";
+  color: #00cc00;
+}
+#rock-scissors:checked ~ div h2::before,
+#paper-rock:checked ~ div h2::before,
+#scissors-paper:checked ~ div h2::before {
+  content: "Computer Wins!";
+  color: #cc0000;
+}
+
+#message {
+  text-align: center;
+  display: none;
+  font-size: 1.5rem;
+  margin-top: 20px;
+}
+
+input:checked ~ #message {
+  display: block;
+}
+
+#hands {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #2c3e50;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+#game-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#game-board {
+    border: 2px solid #34495e;
+    box-shadow: 0 0 20px rgba(52, 152, 219, 0.5);
+}
+
+#score, #level {
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ecf0f1;
+}
+
+#score {
+    top: 10px;
+    left: 10px;
+}
+
+#level {
+    top: 10px;
+    right: 10px;
+}
+
+#start-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 24px;
+    padding: 10px 20px;
+    cursor: pointer;
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+#start-button:hover {
+    background-color: #27ae60;
+}
+
+#mobile-controls {
+    display: none;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+    margin-top: 20px;
+}
+
+#mobile-controls button {
+    font-size: 24px;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+}
+
+#up { grid-column: 2; }
+#left { grid-column: 1; grid-row: 2; }
+#right { grid-column: 3; grid-row: 2; }
+#down { grid-column: 2; grid-row: 3; }
+
+@media (max-width: 768px) {
+    #game-board {
+        max-width: 90vw;
+        max-height: 90vw;
+    }
+
+    #mobile-controls {
+        display: grid;
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
