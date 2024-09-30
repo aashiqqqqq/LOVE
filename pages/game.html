@@ -10,7 +10,18 @@
     <script src="../scripts/navbar.js" defer></script>
 </head>
 <body>
-    <!-- Your game page content here -->
+    <div id="game-container">
+        <canvas id="game-board"></canvas>
+        <div id="score">Score: <span id="score-value">0</span></div>
+        <div id="level">Level: <span id="level-value">1</span></div>
+        <button id="start-button">Start Game</button>
+        <div id="mobile-controls">
+            <button id="up">↑</button>
+            <button id="left">←</button>
+            <button id="right">→</button>
+            <button id="down">↓</button>
+        </div>
+    </div>
 
     <!-- Navbar -->
     <nav class="nav">
