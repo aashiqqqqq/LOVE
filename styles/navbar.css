@@ -34,6 +34,7 @@ a {
   align-items: flex-start;
   max-width: 400px;
   padding: 20px;
+  display: block;
 }
 
 .nav [type="checkbox"] {
@@ -184,3 +185,99 @@ a {
 
 /* FOOTER STYLES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+/* Update these styles at the end of the file */
+.nav {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+/* Adjust the menu position */
+.menu {
+    position: absolute;
+    bottom: 100%; /* This positions the menu above the button */
+    left: 50%; /* Center the menu horizontally */
+    transform: translateX(-50%); /* Center the menu horizontally */
+    display: flex;
+    flex-direction: column-reverse; /* Reverse the order so items appear on top */
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s;
+}
+
+.menu li {
+    margin-bottom: 10px;
+    transition: all 0.4s;
+    transform: translateY(20px);
+    opacity: 0;
+}
+
+/* Adjust the menu items position */
+.menu li a span {
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 5px;
+    margin-left: 10px;
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.nav input:checked ~ .menu {
+    opacity: 1;
+    visibility: visible;
+}
+
+.nav input:checked ~ .menu li {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Update transition delays for reverse order */
+.nav input:checked ~ .menu li:nth-child(5) {
+    transition-delay: 0.1s;
+}
+
+.nav input:checked ~ .menu li:nth-child(4) {
+    transition-delay: 0.2s;
+}
+
+.nav input:checked ~ .menu li:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.nav input:checked ~ .menu li:nth-child(2) {
+    transition-delay: 0.4s;
+}
+
+.nav input:checked ~ .menu li:nth-child(1) {
+    transition-delay: 0.5s;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .nav {
+        bottom: 10px;
+        left: 10px;
+    }
+
+    .menu {
+        left: 25px; /* Adjust as needed */
+        transform: none;
+    }
+
+    .menu li {
+        margin-bottom: 5px;
+    }
+
+    .menu li a span {
+        font-size: 10px;
+        margin-left: 5px;
+    }
+}

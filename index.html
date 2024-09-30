@@ -140,10 +140,9 @@
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="/styles/navbar.css">
+    <script src="/scripts/navbar.js" defer></script>
 </head>
 <body>
-    <!-- <div id="navbar-placeholder"></div> -->
-
     <div class="hero">
         <div class="video-wrap">
             <video autoplay playsinline loop muted id="video-bg">
@@ -160,6 +159,45 @@
         </div>
     </div>
     <div class="custom-cursor"></div>
+
+    <!-- Keep the navbar here, at the bottom of the body -->
+    <nav class="nav">
+        <input id="menu" type="checkbox">
+        <label for="menu">Menu</label>
+        <ul class="menu">
+            <li>
+                <a href="/index.html">
+                    <span>Home</span>
+                    <i class="fas fa-home" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a href="/pages/question.html">
+                    <span>Question</span>
+                    <i class="fas fa-question-circle" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a href="/pages/photos.html">
+                    <span>Photos</span>
+                    <i class="fas fa-photo-video" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a href="/pages/game.html">
+                    <span>Game</span>
+                    <i class="fas fa-gamepad" aria-hidden="true"></i>
+                </a>
+            </li>
+            <li>
+                <a href="/pages/apology.html">
+                    <span>Apology</span>
+                    <i class="fas fa-heart-broken" aria-hidden="true"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -182,6 +220,5 @@
             };
         });
     </script>
-    <script src="/scripts/navbar.js"></script>
 </body>
 </html>
